@@ -16,7 +16,7 @@ namespace BlavtBudget.Entities
         private Category _category;
         private string _description;
         private DateTime _date;
-        private List<object> _files;
+        private List<object>? _files;
 
         public int Id { get => _id; set => _id = value; }
         public int CustomerId { get => _customerId; set => _customerId = value; }
@@ -28,13 +28,29 @@ namespace BlavtBudget.Entities
         public DateTime Date { get => _date; set => _date = value; }
         public List<object> Files { get => _files; set => _files = value; }
 
-
-        private Transaction()
+        public Transaction(int customerId)
         {
+            _customerId = customerId;
             _date = new DateTime();
+            _files = new List<object>();
             _id = ++InstanceCount;
         }
 
+        public Transaction(int customerId, int id, int walletId, decimal sum, Currency currency,
+                             Category category, string description, DateTime date, List<object> files)
+        {
+            _customerId = customerId;
+            _date = date;
+            _id = id;
+            _walletId = walletId;
+            _currency= currency;
+            _category= category;
+            _description= description;
+            _sum = sum;
+            _files = files;
+          
+    }
+     
         public override bool Validate()
         {
             var result = true;
