@@ -19,7 +19,7 @@ namespace BlavtBudget
         private string _walletname;
         private string? _description;
         private int _ownerId;
-        private double _startBalance;
+        private decimal _startBalance;
         private Currency _currency;
 
         private List<Category> _categories;
@@ -81,7 +81,7 @@ namespace BlavtBudget
                 HasChanges = true;
             }
         }
-        public double StartBalance
+        public decimal StartBalance
         {
             get
             {
@@ -135,7 +135,7 @@ namespace BlavtBudget
         }
        
         public Wallet(int id, string walletname, string description,
-                      int ownerId, double startBalance, Currency currency,
+                      int ownerId, decimal startBalance, Currency currency,
                       List<Category> categories, List<Customer> customerUsing, List<Transaction> transactions)
         {
             _id = id;
@@ -175,23 +175,6 @@ namespace BlavtBudget
                 $"\nCategories: {Categories}\nTransactions: {Transactions}";
         }
 
-
-        //public List<Transaction> Load (int from = 0, int to = 10)
-        //{
-        //    var result = new List<Transaction>();
-        //    var sorted = _transactions.OrderBy(x => x.Date).ToList();
-
-        //    for (int i = from; i < to; i++)
-        //    {
-        //        if (i < sorted.Count)
-        //        {
-        //            result.Add(sorted[i]);
-        //        }
-        //    }
-
-        //    return result;
-        //}
-
         // temp method
         public void AddUser(Customer customer)
         {
@@ -218,6 +201,7 @@ namespace BlavtBudget
             if (transaction.Id > 0)
             {
                 _transactions.Add(transaction);
+                StartBalance += transaction.Sum;
             }
         }
 
@@ -228,6 +212,7 @@ namespace BlavtBudget
                 if (user == transaction)
                 {
                     _transactions.Remove(transaction);
+                    StartBalance -= transaction.Sum;
                 }
             }
         }
@@ -262,6 +247,44 @@ namespace BlavtBudget
             }
 
             return result;
+        }
+        private enum TypeTransaction
+        {
+            Spending,
+            Profit
+        }
+        private decimal CountMonthStatus(TypeTransaction stats)
+        {
+            Func<decimal, bool> cond = null;
+            switch (stats)
+            {
+                case TypeTransaction.Profit:
+                    cond = (x) => x > 0;
+                    break;
+                case TypeTransaction.Spending:
+                    cond = (x) => x < 0;
+                    break;
+            }
+
+            DateTime dt = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+            decimal sum = 0;
+            foreach (Transaction transaction in Transactions)
+            {
+                if (cond(transaction.Sum) && transaction.Date > dt) sum += transaction.Sum;
+            }
+            return sum;
+        }
+
+
+        public decimal MonthSpending()
+        {
+            return CountMonthStatus(TypeTransaction.Spending);
+        }
+
+    
+        public decimal MonthProfit()
+        {
+            return CountMonthStatus(TypeTransaction.Profit);
         }
 
     }
