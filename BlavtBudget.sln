@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlavtBudget", "BlavtBudget\BlavtBudget.csproj", "{B826FB20-0895-4349-B336-0BE670CB8DBF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EDD06025-F722-4480-9FCE-BCB20B6A35FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetTests", "BudgetTests\BudgetTests.csproj", "{1AE71581-5077-465F-A39C-C6551582E0F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B826FB20-0895-4349-B336-0BE670CB8DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B826FB20-0895-4349-B336-0BE670CB8DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B826FB20-0895-4349-B336-0BE670CB8DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B826FB20-0895-4349-B336-0BE670CB8DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AE71581-5077-465F-A39C-C6551582E0F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AE71581-5077-465F-A39C-C6551582E0F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AE71581-5077-465F-A39C-C6551582E0F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AE71581-5077-465F-A39C-C6551582E0F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1AE71581-5077-465F-A39C-C6551582E0F6} = {EDD06025-F722-4480-9FCE-BCB20B6A35FB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6B26C16-1F86-4655-9D4E-5E7C811F00A1}
+	EndGlobalSection
+EndGlobal
