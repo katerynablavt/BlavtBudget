@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Transactions;
 
@@ -22,8 +23,8 @@ namespace BlavtBudget
         private Currency _currency;
 
         private List<Category> _categories;
-        private List<Customer>? _customerUsing;
-        private List<Transaction> _transactions;
+        private List<Customer>? _customerUsing ;
+        private List<Transaction> _transactions ;
 
         public int WalletId
         {
@@ -173,6 +174,81 @@ namespace BlavtBudget
                 $"\nStartBalance: {StartBalance}\nCurrency: {Currency}\nCustomerUsing: {CustomerUsing}" +
                 $"\nCategories: {Categories}\nTransactions: {Transactions}";
         }
+
+
+        //public List<Transaction> Load (int from = 0, int to = 10)
+        //{
+        //    var result = new List<Transaction>();
+        //    var sorted = _transactions.OrderBy(x => x.Date).ToList();
+
+        //    for (int i = from; i < to; i++)
+        //    {
+        //        if (i < sorted.Count)
+        //        {
+        //            result.Add(sorted[i]);
+        //        }
+        //    }
+
+        //    return result;
+        //}
+
+        // temp method
+        public void AddUser(Customer customer)
+        {
+            if (customer.Id > 0)
+            {
+                _customerUsing.Add(customer);
+            }
+        }
+
+        // temp method
+        public void RemoveUser(Customer customer)
+        {
+            foreach (var user in _customerUsing)
+            {
+                if (user == customer)
+                {
+                    _customerUsing.Remove(customer);
+                }
+            }
+        }
+
+        public void AddTransaction(Transaction transaction)
+        {
+            if (transaction.Id > 0)
+            {
+                _transactions.Add(transaction);
+            }
+        }
+
+        public void RemoveTransaction(Transaction transaction)
+        {
+            foreach (var user in _transactions)
+            {
+                if (user == transaction)
+                {
+                    _transactions.Remove(transaction);
+                }
+            }
+        }
+        public void AddCategory(Category category)
+        {
+            if (category.Id > 0)
+            {
+                _categories.Add(category);
+            }
+        }
+        public void RemoveCategory(Category category)
+        {
+            foreach (var user in _categories)
+            {
+                if (user == category)
+                {
+                    _categories.Remove(category);
+                }
+            }
+        }
+
     }
 
 }
