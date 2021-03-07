@@ -11,7 +11,6 @@ namespace BlavtBudget
         private string _lastName;
         private string _firstName;
         private string _email;
-        private List<Address> _addresses;
         private List<Wallet> _wallets;
         private List<Category> _categories;
         private int _type; //active or deleted
@@ -74,13 +73,6 @@ namespace BlavtBudget
                 return result;
             }
         }
-        public List<Address> Addresses
-        {
-            get
-            {
-                return _addresses;
-            }
-        }
 
         public List<Wallet> Wallet 
         { 
@@ -116,17 +108,15 @@ namespace BlavtBudget
             IsNew = true;
             InstanceCount += 1;
             _id = InstanceCount;
-            _addresses = new List<Address>();
-            //_wallets = new List<Wallet>();
-            //_categories = new List<Category>();
+            _wallets = new List<Wallet>();
+            _categories = new List<Category>();
         }
-        public Customer(int id, string lastName, string firstName, string email, List<Address> addresses, List<Category> categories, List<Wallet> wallets, int type)
+        public Customer(int id, string lastName, string firstName, string email, List<Category> categories, List<Wallet> wallets, int type)
         {
             _id = id;
             _lastName = lastName;
             _firstName = firstName;
             _email = email;
-            _addresses = addresses;
             _wallets = wallets;
             _categories = categories;
             _type = type;
