@@ -1,8 +1,8 @@
-﻿using System;
+﻿using BlavtBudget.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Transactions;
 
 namespace BlavtBudget
 {
@@ -247,6 +247,21 @@ namespace BlavtBudget
                     _categories.Remove(category);
                 }
             }
+        }
+        public List<Transaction> Load10Transactions(int start = 0, int end = 10)
+        {
+            var result = new List<Transaction>();
+            var sorted = _transactions.OrderBy(x => x.Date).ToList();
+
+            for (int i = start; i < end; i++)
+            {
+                if (i < sorted.Count)
+                {
+                    result.Add(sorted[i]);
+                }
+            }
+
+            return result;
         }
 
     }
