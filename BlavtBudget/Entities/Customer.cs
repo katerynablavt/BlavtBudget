@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlavtBudget.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace BlavtBudget
@@ -11,7 +12,8 @@ namespace BlavtBudget
         private string _lastName;
         private string _firstName;
         private string _email;
-        private List<Wallet> _wallets;
+        private List<Wallet> _ownWallets;
+        private List<Wallet> _sharedWallets;
         private List<Category> _categories;
         private int _type; //active or deleted
 
@@ -74,11 +76,11 @@ namespace BlavtBudget
             }
         }
 
-        public List<Wallet> Wallet 
+        public List<Wallet> OwnWallet 
         { 
             get 
             {
-                return _wallets;
+                return _ownWallets;
             } 
         }
         public List<Category> Categories
@@ -108,16 +110,18 @@ namespace BlavtBudget
             IsNew = true;
             InstanceCount += 1;
             _id = InstanceCount;
-            _wallets = new List<Wallet>();
+            _ownWallets = new List<Wallet>();
+            _sharedWallets = new List<Wallet>();
             _categories = new List<Category>();
         }
-        public Customer(int id, string lastName, string firstName, string email, List<Category> categories, List<Wallet> wallets, int type)
+        public Customer(int id, string lastName, string firstName, string email, List<Category> categories, List<Wallet> wallets, List<Wallet> swallets, int type)
         {
             _id = id;
             _lastName = lastName;
             _firstName = firstName;
             _email = email;
-            _wallets = wallets;
+            _ownWallets = wallets;
+            _sharedWallets = swallets;
             _categories = categories;
             _type = type;
         }
@@ -141,5 +145,88 @@ namespace BlavtBudget
         {
             return FullName;
         }
+
+        // temp method
+        public void AddUser(Customer customer, Wallet wallet)
+        {
+            if (Id == wallet.CustomerOwnerId)
+            {
+                wallet.CustomerUsing.Add(customer);
+            }
+        }
+
+        // temp method
+        public void RemoveUser(Customer customer, Wallet wallet)
+        {
+            if (Id == wallet.CustomerOwnerId)
+            {
+
+                foreach (var user in wallet.CustomerUsing)
+                {
+                    if (user == customer)
+                    {
+                        wallet.CustomerUsing.Remove(customer);
+                    }
+                }
+            }
+        }
+
+        public void EdditTransactionSum(Transaction transaction, decimal sum)
+        {
+            if (Id == transaction.CustomerId&& transaction.Id>0)
+            {
+                transaction.Sum = sum;
+            }
+        }
+        public void EdditTransactionDescription(Transaction transaction, string desccription)
+        {
+            if (Id == transaction.CustomerId && transaction.Id > 0)
+            {
+                transaction.Description = desccription;
+            }
+        }
+        public void EdditTransactionFiles(Transaction transaction, List<object> files)
+        {
+            if (Id == transaction.CustomerId && transaction.Id > 0)
+            {
+                transaction.Files = files;
+            }
+        }
+
+        public void RemoveTransaction(Transaction transaction, Wallet wallet)
+        {
+            if (Id == wallet.CustomerOwnerId && transaction.Id > 0)
+            {
+                foreach (var user in wallet.Transactions)
+                {
+                    if (user == transaction)
+                    {
+                        wallet.Transactions.Remove(transaction);
+                        wallet.StartBalance -= transaction.Sum;
+                    }
+                }
+            }
+        }
+        public void AddCategory(Category category, Wallet wallet)
+        {
+            if (Id == wallet.CustomerOwnerId && category.Id > 0)
+            {
+                wallet.Categories.Add(category);
+            }
+        }
+        public void RemoveCategory(Category category, Wallet wallet)
+        {
+            if (Id == wallet.CustomerOwnerId && category.Id > 0)
+            {
+                foreach (var user in wallet.Categories)
+                {
+                    if (user == category)
+                    {
+                        wallet.Categories.Remove(category);
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -175,64 +175,64 @@ namespace BlavtBudget
                 $"\nCategories: {Categories}\nTransactions: {Transactions}";
         }
 
-        // temp method
-        public void AddUser(Customer customer)
-        {
-            if (customer.Id > 0)
-            {
-                _customerUsing.Add(customer);
-            }
-        }
+        //// temp method
+        //public void AddUser(Customer customer)
+        //{
+        //    if (customer.Id > 0)
+        //    {
+        //        _customerUsing.Add(customer);
+        //    }
+        //}
 
-        // temp method
-        public void RemoveUser(Customer customer)
-        {
-            foreach (var user in _customerUsing)
-            {
-                if (user == customer)
-                {
-                    _customerUsing.Remove(customer);
-                }
-            }
-        }
+        //// temp method
+        //public void RemoveUser(Customer customer)
+        //{
+        //    foreach (var user in _customerUsing)
+        //    {
+        //        if (user == customer)
+        //        {
+        //            _customerUsing.Remove(customer);
+        //        }
+        //    }
+        //}
 
-        public void AddTransaction(Transaction transaction)
-        {
-            if (transaction.Id > 0)
-            {
-                _transactions.Add(transaction);
-                StartBalance += transaction.Sum;
-            }
-        }
+        //public void AddTransaction(Transaction transaction)
+        //{
+        //    if (transaction.Id > 0)
+        //    {
+        //        _transactions.Add(transaction);
+        //        StartBalance += transaction.Sum;
+        //    }
+        //}
 
-        public void RemoveTransaction(Transaction transaction)
-        {
-            foreach (var user in _transactions)
-            {
-                if (user == transaction)
-                {
-                    _transactions.Remove(transaction);
-                    StartBalance -= transaction.Sum;
-                }
-            }
-        }
-        public void AddCategory(Category category)
-        {
-            if (category.Id > 0)
-            {
-                _categories.Add(category);
-            }
-        }
-        public void RemoveCategory(Category category)
-        {
-            foreach (var user in _categories)
-            {
-                if (user == category)
-                {
-                    _categories.Remove(category);
-                }
-            }
-        }
+        //public void RemoveTransaction(Transaction transaction)
+        //{
+        //    foreach (var user in _transactions)
+        //    {
+        //        if (user == transaction)
+        //        {
+        //            _transactions.Remove(transaction);
+        //            StartBalance -= transaction.Sum;
+        //        }
+        //    }
+        //}
+        //public void AddCategory(Category category)
+        //{
+        //    if (category.Id > 0)
+        //    {
+        //        _categories.Add(category);
+        //    }
+        //}
+        //public void RemoveCategory(Category category)
+        //{
+        //    foreach (var user in _categories)
+        //    {
+        //        if (user == category)
+        //        {
+        //            _categories.Remove(category);
+        //        }
+        //    }
+        //}
         public List<Transaction> Load10Transactions(int start = 0, int end = 10)
         {
             var result = new List<Transaction>();
