@@ -90,6 +90,13 @@ namespace BlavtBudget
                 return _categories;
             }
         }
+        public List<Wallet> SharedWallets
+        {
+            get
+            {
+                return _sharedWallets;
+            }
+        }
 
         public int Type
         {
@@ -104,6 +111,7 @@ namespace BlavtBudget
             }
         }
 
+      
 
         public Customer()
         {

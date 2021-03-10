@@ -11,15 +11,15 @@ namespace BlavtBudget
         private int _id;
         private string _name;
         private int _ownerId;
-        private string _description;
+        private string? _description;
         private Color _color;
         private object? _icon;
 
         public int Id { get => _id; set => _id = value; }
         public string Name { get => _name; set => _name = value; }
-        public string Description { get => _description; set => _description = value; }
+        public string? Description { get => _description; set => _description = value; }
         public Color Color { get => _color; set => _color = value; }
-        public object Icon { get => _icon; set => _icon = value; }
+        public object? Icon { get => _icon; set => _icon = value; }
         public int OwnerId { get => _ownerId; set => _ownerId = value; }
 
         public Category(int ownerId)
