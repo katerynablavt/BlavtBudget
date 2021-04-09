@@ -154,7 +154,7 @@ namespace BlavtBudget
             return FullName;
         }
 
-        // temp method
+        
         public void AddUser(Customer customer, Wallet wallet)
         {
             if (Id == wallet.CustomerOwnerId)
@@ -163,7 +163,7 @@ namespace BlavtBudget
             }
         }
 
-        // temp method
+       
         public void RemoveUser(Customer customer, Wallet wallet)
         {
             if (Id == wallet.CustomerOwnerId)
@@ -178,6 +178,28 @@ namespace BlavtBudget
                 }
             }
         }
+
+        public void AddCategory(Category category, Wallet wallet)
+        {
+            if (Id == wallet.CustomerOwnerId && category.Id > 0)
+            {
+                wallet.Categories.Add(category);
+            }
+        }
+        public void RemoveCategory(Category category, Wallet wallet)
+        {
+            if (Id == wallet.CustomerOwnerId && category.Id > 0)
+            {
+                foreach (var user in wallet.Categories)
+                {
+                    if (user == category)
+                    {
+                        wallet.Categories.Remove(category);
+                    }
+                }
+            }
+        }
+
 
         public void EdditTransactionSum(Transaction transaction, decimal sum)
         {
@@ -201,6 +223,15 @@ namespace BlavtBudget
             }
         }
 
+        public void AddTransaction(Transaction transaction, Wallet wallet)
+        {
+            if (Id == transaction.CustomerId && transaction.Currency == wallet.Currency)
+            {
+                wallet.Transactions.Add(transaction);
+                wallet.StartBalance += transaction.Sum;
+            }
+        }
+
         public void RemoveTransaction(Transaction transaction, Wallet wallet)
         {
             if (Id == wallet.CustomerOwnerId && transaction.Id > 0)
@@ -211,26 +242,6 @@ namespace BlavtBudget
                     {
                         wallet.Transactions.Remove(transaction);
                         wallet.StartBalance -= transaction.Sum;
-                    }
-                }
-            }
-        }
-        public void AddCategory(Category category, Wallet wallet)
-        {
-            if (Id == wallet.CustomerOwnerId && category.Id > 0)
-            {
-                wallet.Categories.Add(category);
-            }
-        }
-        public void RemoveCategory(Category category, Wallet wallet)
-        {
-            if (Id == wallet.CustomerOwnerId && category.Id > 0)
-            {
-                foreach (var user in wallet.Categories)
-                {
-                    if (user == category)
-                    {
-                        wallet.Categories.Remove(category);
                     }
                 }
             }

@@ -44,7 +44,7 @@ namespace BlavtBudget
                 HasChanges = true;
             }
         }
-        public string Description
+        public string? Description
         {
             get
             {
@@ -102,7 +102,7 @@ namespace BlavtBudget
             protected set { }
         }
 
-        public List<Customer> CustomerUsing
+        public List<Customer>? CustomerUsing
         {
             get
             {
@@ -175,7 +175,7 @@ namespace BlavtBudget
                 $"\nCategories: {Categories}\nTransactions: {Transactions}";
         }
 
-        //// temp method
+       
         //public void AddUser(Customer customer)
         //{
         //    if (customer.Id > 0)
@@ -184,7 +184,7 @@ namespace BlavtBudget
         //    }
         //}
 
-        //// temp method
+       
         //public void RemoveUser(Customer customer)
         //{
         //    foreach (var user in _customerUsing)
@@ -196,26 +196,29 @@ namespace BlavtBudget
         //    }
         //}
 
-        public void AddTransaction(Transaction transaction)
-        {
-            if (transaction.Id > 0 && transaction.Currency == Currency)
-            {
-                _transactions.Add(transaction);
-                StartBalance += transaction.Sum;
-            }
-        }
+        //public void AddTransaction(Transaction transaction)
+        //{
+        //    if (transaction.Id > 0 && transaction.Currency == Currency)
+        //    {
+        //        _transactions.Add(transaction);
+        //        StartBalance += transaction.Sum;
+        //    }
+        //}
 
-        public void RemoveTransaction(Transaction transaction)
-        {
-            foreach (var user in _transactions)
-            {
-                if (user == transaction)
-                {
-                    _transactions.Remove(transaction);
-                    StartBalance -= transaction.Sum;
-                }
-            }
-        }
+        //public void RemoveTransaction(Transaction transaction)
+        //{
+        //    foreach (var user in _transactions)
+        //    {
+        //        if (user == transaction)
+        //        {
+        //            _transactions.Remove(transaction);
+        //            StartBalance -= transaction.Sum;
+        //        }
+        //    }
+        //}
+
+
+
         //public void AddCategory(Category category)
         //{
         //    if (category.Id > 0)
