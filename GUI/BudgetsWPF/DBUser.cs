@@ -6,22 +6,24 @@ using System.Threading.Tasks;
 
 namespace BudgetsWPF
 {
-    public class User
+    public class DBUser
     {
-        public User(Guid guid, string firstName, string lastName, string email, string login)
+
+        public DBUser( string firstName, string lastName, string email, string login, string password)
         {
-            Guid = guid;
+            Guid = new Guid();
             FirstName = firstName;
             LastName = lastName;
             Email = email;
             Login = login;
+            Password = password;
         }
-
-        public Guid Guid {get;}
+        public Guid Guid { get; }
         public string FirstName { get; }
         public string LastName { get; }
 
         public string Email { get; }
         public string Login { get; }
+        public string Password { get; }
     }
 }

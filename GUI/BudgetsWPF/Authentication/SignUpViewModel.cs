@@ -6,11 +6,10 @@ using System.Windows;
 
 namespace BudgetsWPF.Authentication
 {
-    public class SignInViewModel : INotifyPropertyChanged
+    public class SignUpViewModel : INotifyPropertyChanged
     {
-        private AuthUser _authUser = new AuthUser();
-        private Action _goToSignUp;
-        private Action _goToWallets;
+        private RegistrationUser _regUser = new RegistrationUser();
+        private Action _gotoSignIn;
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
@@ -21,15 +20,15 @@ namespace BudgetsWPF.Authentication
         {
             get
             {
-                return _authUser.Login;
+                return _regUser.Login;
             }
             set
             {
-                if (_authUser.Login != value)
+                if (_regUser.Login != value)
                 {
-                    _authUser.Login = value;
+                    _regUser.Login = value;
                     OnPropertyChanged();
-                    SingInCommand.RaiseCanExecuteChanged();
+                    SingUpCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -39,41 +38,57 @@ namespace BudgetsWPF.Authentication
         {
             get
             {
-                return _authUser.Password;
+                return _regUser.Password;
             }
             set
             {
-                if (_authUser.Password != value)
+                if (_regUser.Password != value)
                 {
-                    _authUser.Password = value;
+                    _regUser.Password = value;
                     OnPropertyChanged();
-                    SingInCommand.RaiseCanExecuteChanged();
+                    SingUpCommand.RaiseCanExecuteChanged();
                 }
             }
         }
 
-        public DelegateCommand SingInCommand { get;  }
-        public DelegateCommand CloseCommand { get; }
-
-        public DelegateCommand SingUpCommand { get; }
-        public SignInViewModel(Action goToSignUp, Action goToWallets)
+        public string LastName
         {
-            SingInCommand = new DelegateCommand(SignIn, IsSignInEnabled);
-            CloseCommand = new DelegateCommand(() => Environment.Exit(0));
-            _goToSignUp = goToSignUp;
-            SingUpCommand = new DelegateCommand(_goToSignUp);
-            _goToWallets=goToWallets;
+            get
+            {
+                return _regUser.LastName;
+            }
+            set
+            {
+                if (_regUser.LastName != value)
+                {
+                    _regUser.LastName = value;
+                    OnPropertyChanged();
+                    SingUpCommand.RaiseCanExecuteChanged();
+                }
+            }
         }
 
-        private bool IsSignInEnabled()
+        public DelegateCommand SingUpCommand { get;  }
+        public DelegateCommand CloseCommand { get; }
+
+        public DelegateCommand SingInCommand { get; }
+        public SignUpViewModel(Action gotoSignIn)
         {
-            if (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(Login))
+            SingUpCommand = new DelegateCommand(SignUp, IsSignUpEnabled);
+            CloseCommand = new DelegateCommand(() => Environment.Exit(0));
+            _gotoSignIn = gotoSignIn;
+            SingInCommand = new DelegateCommand(_gotoSignIn);
+        }
+
+        private bool IsSignUpEnabled()
+        {
+            if (String.IsNullOrWhiteSpace(Password) || String.IsNullOrWhiteSpace(Login)|| String.IsNullOrWhiteSpace(LastName))
                 return false;
             else
                return true;
         }
 
-        private void SignIn()
+        private void SignUp()
         {
             if (String.IsNullOrWhiteSpace(Login) || String.IsNullOrWhiteSpace(Password))
             {
@@ -84,19 +99,19 @@ namespace BudgetsWPF.Authentication
             {
                 
                 var authService = new AuthService();
-                User user = null;
+               
                 try
                 {
-                    user = authService.Authenticate(_authUser);
+                    authService.RegisterUser(_regUser);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Sign In failed: {ex.Message}");
                     return;
                 }
-                MessageBox.Show($"Signed in was susceessful for user {user.FirstName} {user.LastName}");
+                MessageBox.Show($"User sucsessfuly registered, please sign in");
                 //TODO navigate to main view
-                _goToWallets.Invoke();
+                _gotoSignIn.Invoke();
             }
         }
     }

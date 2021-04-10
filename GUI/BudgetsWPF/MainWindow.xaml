@@ -15,7 +15,7 @@
         <local:Header> </local:Header>
         
         <!--Main Control-->
-        <local1:SignInView Grid.Row="1"></local1:SignInView>
+        <local:MainView Grid.Row="1"> </local:MainView>
     </Grid>
     
 
