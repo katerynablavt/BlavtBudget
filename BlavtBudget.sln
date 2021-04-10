@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetTests", "BudgetTests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetsWPF", "GUI\BudgetsWPF\BudgetsWPF.csproj", "{1CA926E6-C195-4D41-8A87-A5C681F7B845}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{9DBFA9D8-F40E-401D-BDB3-9F87D83AA82A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{9DBFA9D8-F40E-401D-BDB3-9F87D83AA82A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{53D6EC3B-6FF2-4C0E-9B9B-9842F68A3512}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{53D6EC3B-6FF2-4C0E-9B9B-9842F68A3512}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStorage", "DataStorage\DataStorage.csproj", "{4A76AE9A-4BA7-4413-B251-E108B298B068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{53D6EC3B-6FF2-4C0E-9B9B-9842F68A3512}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53D6EC3B-6FF2-4C0E-9B9B-9842F68A3512}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53D6EC3B-6FF2-4C0E-9B9B-9842F68A3512}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A76AE9A-4BA7-4413-B251-E108B298B068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A76AE9A-4BA7-4413-B251-E108B298B068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A76AE9A-4BA7-4413-B251-E108B298B068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A76AE9A-4BA7-4413-B251-E108B298B068}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

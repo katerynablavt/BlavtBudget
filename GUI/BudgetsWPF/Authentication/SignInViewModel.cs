@@ -115,7 +115,7 @@ namespace BudgetsWPF.Authentication
                 try
                 {
                     IsEnabled = false;
-                    user = await Task.Run(()=>authService.Authenticate(_authUser));
+                    user = await authService.Authenticate(_authUser);
                 }
                 catch (Exception ex)
                 {

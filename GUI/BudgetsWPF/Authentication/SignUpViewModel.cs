@@ -103,7 +103,7 @@ namespace BudgetsWPF.Authentication
                return true;
         }
 
-        private void SignUp()
+        private async void SignUp()
         {
             if (String.IsNullOrWhiteSpace(Login) || String.IsNullOrWhiteSpace(Password))
             {
@@ -117,7 +117,7 @@ namespace BudgetsWPF.Authentication
                
                 try
                 {
-                    authService.RegisterUser(_regUser);
+                  await  authService.RegisterUser(_regUser);
                 }
                 catch (Exception ex)
                 {

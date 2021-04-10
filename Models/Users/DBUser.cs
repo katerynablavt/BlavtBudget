@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataStorage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class DBUser
+    public class DBUser : IStorable
     {
 
         public DBUser( string firstName, string lastName, string email, string login, string password)
