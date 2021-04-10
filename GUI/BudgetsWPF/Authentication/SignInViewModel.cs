@@ -4,6 +4,7 @@ using Services;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace BudgetsWPF.Authentication
@@ -14,7 +15,20 @@ namespace BudgetsWPF.Authentication
         private Action _goToSignUp;
         private Action _goToWallets;
         public event PropertyChangedEventHandler PropertyChanged;
+        public bool _isEnabled =true;
 
+        public bool IsEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged();
+            }
+        }
         public AuthNavigetableTypes Type
         {
             get
@@ -85,7 +99,7 @@ namespace BudgetsWPF.Authentication
                return true;
         }
 
-        private void SignIn()
+        private async void SignIn()
         {
             if (String.IsNullOrWhiteSpace(Login) || String.IsNullOrWhiteSpace(Password))
             {
@@ -99,12 +113,17 @@ namespace BudgetsWPF.Authentication
                 User user = null;
                 try
                 {
-                    user = authService.Authenticate(_authUser);
+                    IsEnabled = false;
+                    user = await Task.Run(()=>authService.Authenticate(_authUser));
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Sign In failed: {ex.Message}");
                     return;
+                }
+                finally
+                {
+                    IsEnabled=true;
                 }
                 MessageBox.Show($"Signed in was susceessful for user {user.FirstName} {user.LastName}");
                 //TODO navigate to main view

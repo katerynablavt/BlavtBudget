@@ -10,7 +10,7 @@ namespace Services
     public class AuthService
     {
 
-        private static List<DBUser> Users = new List<DBUser>();
+        private static List<DBUser> Users = new List<DBUser>() { new DBUser("1","1","1", "1", "1") };
         public User Authenticate(AuthUser authUser)
         {
             if (String.IsNullOrWhiteSpace(authUser.Login) || String.IsNullOrWhiteSpace(authUser.Password))
