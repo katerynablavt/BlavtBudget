@@ -16,6 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Models\Models.csproj" />
+    <ProjectReference Include="..\..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\3cd5ff9d25da829335bfbc94d60f4d6f.jpg" />
   </ItemGroup>
 

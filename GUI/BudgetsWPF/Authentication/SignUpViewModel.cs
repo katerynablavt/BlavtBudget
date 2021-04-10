@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using Models;
+using Prism.Commands;
+using Services;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -6,11 +8,23 @@ using System.Windows;
 
 namespace BudgetsWPF.Authentication
 {
-    public class SignUpViewModel : INotifyPropertyChanged
+    public class SignUpViewModel : INotifyPropertyChanged, IAuthNavigetable
     {
         private RegistrationUser _regUser = new RegistrationUser();
         private Action _gotoSignIn;
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public AuthNavigetableTypes Type
+        {
+            get
+            {
+                return AuthNavigetableTypes.SignUp;
+            }
+        }
+        public void ClearSensitiveData()
+        {
+            _regUser = new RegistrationUser();
+        }
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
