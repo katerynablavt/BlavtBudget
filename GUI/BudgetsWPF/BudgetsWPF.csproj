@@ -28,10 +28,17 @@
     <Compile Update="Authentication\SignUpView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Wallets\WalletsDetailsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <Page Update="Authentication\SignUpView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Wallets\WalletsDetailsView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

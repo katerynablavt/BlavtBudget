@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using BudgetsWPF.Navigation;
+using Models;
 using Prism.Commands;
 using Services;
 using System;
@@ -9,7 +10,7 @@ using System.Windows;
 
 namespace BudgetsWPF.Authentication
 {
-    public class SignInViewModel : INotifyPropertyChanged, IAuthNavigetable
+    public class SignInViewModel : INotifyPropertyChanged, INavigatable<AuthNavigetableTypes>
     {
         private AuthUser _authUser = new AuthUser();
         private Action _goToSignUp;

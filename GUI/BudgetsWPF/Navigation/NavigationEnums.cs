@@ -11,10 +11,10 @@ namespace BudgetsWPF.Authentication
         SignIn,
         SignUp
     }
-    public interface IAuthNavigetable
+    public enum MainNavigetableTypes
     {
-        public AuthNavigetableTypes Type { get; }
-
-        public void ClearSensitiveData();
+        Auth,
+        Wallets
     }
+
 }

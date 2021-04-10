@@ -1,4 +1,6 @@
-﻿using Models.Wallets;
+﻿using BudgetsWPF.Authentication;
+using BudgetsWPF.Navigation;
+using Models.Wallets;
 using Prism.Mvvm;
 using Services;
 using System;
@@ -10,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace BudgetsWPF.Wallets
 {
-    public class WalletsViewModel : BindableBase, IMainNavigetable
+    public class WalletsViewModel : BindableBase, INavigatable<MainNavigetableTypes>
     {
         private WalletService _service;
-        private Wallet _currentWallet;
+        private WalletDetailsViewModel _currentWallet;
 
-        public ObservableCollection<Wallet> Wallets { get; set; }
-        public Wallet CurrentWallet
+        public ObservableCollection<WalletDetailsViewModel> Wallets { get; set; }
+        public WalletDetailsViewModel CurrentWallet
         {
             get
             {
@@ -32,7 +34,11 @@ namespace BudgetsWPF.Wallets
         public WalletsViewModel()
         {
             _service = new WalletService();
-            Wallets = new ObservableCollection<Wallet>(_service.GetWallets());
+            Wallets = new ObservableCollection<WalletDetailsViewModel>();
+           foreach (var wallet in _service.GetWallets())
+            {
+                Wallets.Add(new WalletDetailsViewModel(wallet));
+            }
         }
         public MainNavigetableTypes Type
         {
