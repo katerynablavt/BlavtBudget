@@ -11,6 +11,7 @@ namespace BudgetsWPF.Navigation
         public TObject Type { get; }
 
         public void ClearSensitiveData();
+        void Update();
     }
 
 }

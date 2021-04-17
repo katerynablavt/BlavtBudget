@@ -16,5 +16,12 @@ namespace BudgetsWPF.Authentication
         Auth,
         Wallets
     }
+    public enum WalletsNavigatableTypes
+    {
+        Wallet,
+        WalletCreation,
+        TransactionCreation,
+        CategoryCreation
+    }
 
 }

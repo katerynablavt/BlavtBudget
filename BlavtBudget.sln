@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{53D6EC3B-6FF2-4C0E-9B9B-9842F68A3512}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStorage", "DataStorage\DataStorage.csproj", "{4A76AE9A-4BA7-4413-B251-E108B298B068}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStorage", "DataStorage\DataStorage.csproj", "{4A76AE9A-4BA7-4413-B251-E108B298B068}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -19,6 +19,7 @@ namespace DataStorage
             }
         }
 
+  
 
         public async Task AddOrUpdateAsync(TObject obj)
         {
@@ -29,7 +30,14 @@ namespace DataStorage
               await sw.WriteAsync(stringObject);
             }
         }
-
+        public async Task AddOrUpdateAsyncForObject(TObject obj, IStorable forO)
+        {
+            var stringObj = JsonSerializer.Serialize(obj);
+            using (StreamWriter sw = new StreamWriter(Path.Combine(BaseFolder, obj.Guid.ToString("N") + '_' + forO.Guid.ToString("N")), false))
+            {
+                await sw.WriteAsync(stringObj);
+            }
+        }
         public async Task<TObject> GetAsync(Guid guid)
         {
             string stringObject = null;
@@ -65,8 +73,34 @@ namespace DataStorage
             return res;
         }
 
+        public async Task<List<TObject>> GetAllAsyncForObject(IStorable forO)
+        {
+            var guid = forO.Guid;
+            var res = new List<TObject>();
+            foreach (var file in Directory.EnumerateFiles(BaseFolder, "*_" + guid.ToString("N")))
+            {
+                string stringObj = null;
 
+                using (StreamReader sw = new StreamReader(file))
+                {
+                    stringObj = await sw.ReadToEndAsync();
+                }
 
+                res.Add(JsonSerializer.Deserialize<TObject>(stringObj));
+            }
 
+            return res;
+        }
+
+        // keep method async in case it became async later
+#pragma warning disable 1998
+        public async Task RemoveObj(IStorable obj)
+#pragma warning restore 1998
+        {
+            foreach (var file in Directory.GetFiles(BaseFolder, obj.Guid.ToString("N") + "_*"))
+            {
+                File.Delete(file);
+            }
+        }
     }
 }

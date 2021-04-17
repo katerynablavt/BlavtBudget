@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="BudgetsWPF.Wallets.WalletCreateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BudgetsWPF.Wallets"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <DataTemplate DataType="{ x:Type wallets:WalletCreateViewModel}">
+            <local:WalletsView></local:WalletsView>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock HorizontalAlignment="Center" Margin="10, 10, 10, 0">Name</TextBlock>
+            <TextBox Name="TbLogin" Width="300" Margin="10, 10, 10, 0" HorizontalAlignment="Stretch" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock HorizontalAlignment="Center" Margin="10, 0, 10, 10" Foreground="Red" Text="{Binding NameErr}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Center" Margin="10, 10, 10, 0">Description</TextBlock>
+            <TextBox Name="TbDescription" Width="300" Margin="10, 10, 10, 0" HorizontalAlignment="Stretch" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock HorizontalAlignment="Center" Margin="10, 0, 10, 10" Foreground="Red" Text="{Binding DescriptionErr}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="2">
+            <TextBlock HorizontalAlignment="Center" Margin="10, 10, 10, 0">Start Balance</TextBlock>
+            <TextBox Name="TbStartBalance" Width="300" Margin="10, 10, 10, 0" HorizontalAlignment="Stretch" Text="{Binding StartBalance, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock HorizontalAlignment="Center" Margin="10, 0, 10, 10" Foreground="Red" Text="{Binding BalanceErr}"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="3">
+            <TextBlock HorizontalAlignment="Center" Margin="10, 10, 10, 0">Currency</TextBlock>
+            <ComboBox  ItemsSource="{Binding Path=PossibleCurrency}" SelectedValue="{Binding Path=Currency, UpdateSourceTrigger=PropertyChanged}"
+                       Name="Tb" Width="300" Margin="10, 10, 10, 0" HorizontalAlignment="Stretch"></ComboBox>
+            <TextBlock HorizontalAlignment="Center" Margin="10, 0, 10, 10" Foreground="Red" Text="{Binding CurrencyErr}"></TextBlock>
+        </StackPanel>
+
+        <Button Name="BSignIn" Grid.Column="0" Margin="10,10,10,10" Command="{Binding AddWalletCommand}" Grid.Row="4">Add</Button>
+        <Button Name="BClose" Grid.Row="4" Grid.Column="1" Margin="10" Command="{Binding GoBackCommand}">Back</Button>
+    </Grid>
+</UserControl>

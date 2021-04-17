@@ -131,8 +131,10 @@ namespace BudgetsWPF.Authentication
                 _goToWallets.Invoke();
             }
         }
-
-       public void ClearSensitiveData()
+        public void Update()
+        {
+        }
+        public void ClearSensitiveData()
         {
             Password = "";
         }

@@ -45,5 +45,10 @@ namespace BudgetsWPF.Authentication
         {
             CurrentViewModel.ClearSensitiveData();
         }
+
+        public void Update()
+        {
+            CurrentViewModel.Update();
+        }
     }
 }
