@@ -50,7 +50,7 @@ namespace Models
                                    string currency)
         {
             //create wallet and assign it to user
-            Wallets.Wallet wallet = Wallets.Wallet.CreateWalletForUser(this, name, startBalance, description, currency, guid);
+            Wallets.Wallet wallet = Wallets.Wallet.CreateWalletForUser(this, name, startBalance, description, currency);
             return wallet;
         }
 
